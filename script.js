@@ -1,35 +1,32 @@
-let bandNames = ['The Rolling Stones', 'Led Zeppelin', 'The Beatles', 'Pink Floyd'];
-
-// Function to remove articles from a band name
-function removeArticles(name) {
-// Define the list of articles to be removed
-const articles = ['a', 'an', 'the'];
-
-// Split the band name into words
-const words = name.split(' ');
-
-// Filter out the articles from the words array
-const filteredWords = words.filter(word => !articles.includes(word.toLowerCase()));
-
-// Join the filtered words to form the modified band name
-const modifiedName = filteredWords.join(' ');
-
-return modifiedName;
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
+let obj={};
+function check(str){
+if(str[0]=='T' && str[1]=='h' && str[2]=='e' && str[3]==' '){
+var res=str.slice(4);
+obj[res]=str;
+return res;
 }
-
-// Sort the band names in lexicographic order, excluding articles
-bandNames.sort((a, b) => {
-const nameA = removeArticles(a);
-const nameB = removeArticles(b);
-return nameA.localeCompare(nameB);
-});
-
-// Get the <ul> element by its id
-const bandList = document.getElementById('band');
-
-// Iterate over the sorted band names and create <li> elements
-for (let i = 0; i < bandNames.length; i++) {
-const li = document.createElement('li');
-li.textContent = bandNames[i];
-bandList.appendChild(li);
+if(str[0]=='A'){
+if(str[1]==' '){
+var res=str.slice(2);
+obj[res]=str;
+return res;
 }
+if(str[1]=='n' && str[2]==' '){
+var res=str.slice(3);
+obj[res]=str;
+return res;
+}
+}
+obj[str]=str;
+return str;
+}
+for(let i=0;i<touristSpots.length;i++){
+touristSpots[i]=check(touristSpots[i]);
+// console.log(touristSpots[i]);
+}
+touristSpots.sort();
+for(let i=0;i<touristSpots.length;i++){
+touristSpots[i]=obj[touristSpots[i]];
+}
+console.log(touristSpots);
